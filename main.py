@@ -22,6 +22,8 @@ def main() -> None:
         raise ValueError(f"line must be 1-199 characters, got {len(LINE)}")
     if not LINE.strip():
         raise ValueError("line must not be only whitespace")
+    if "\n" in LINE or "\r" in LINE:
+        raise ValueError("line must be exactly one line, no line breaks")
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8", newline="") as f:
         f.write(LINE)
